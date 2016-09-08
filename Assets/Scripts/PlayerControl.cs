@@ -1,14 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerControl : MonoBehaviour {
     public float maxForce = 100.0f;
     public float maxJumpForce = 500.0f;
     float h = 0.0f;
 
+    public List<int> coms;
+
+
+
+
+    public int num333 { get; set; };
+
+
+
+
     private bool isJumping;
 	// Use this for initialization
 	void Start () {
+        Debug.Log("ssss");
 	
 	}
 	
@@ -40,10 +52,15 @@ public class PlayerControl : MonoBehaviour {
             body.velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 5);
         }
 
-        if ((h < 0 && this.transform.localScale.x > 0) || (h > 0 && this.transform.localScale.x < 0)) 
+        if ((h < 0 && this.transform.localScale.x > 0) || (h > 0 && this.transform.localScale.x < 0))
         {
             this.transform.localScale = new Vector3(this.transform.localScale.x * -1, this.transform.localScale.y, this.transform.localScale.z);
         }
+    }
+
+    void OnMouseDown()
+    {
+        this.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 1000);
     }
 
 }
