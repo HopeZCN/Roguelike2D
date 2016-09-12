@@ -6,21 +6,14 @@ public class PlayerControl : MonoBehaviour {
     public float maxForce = 100.0f;
     public float maxJumpForce = 500.0f;
     float h = 0.0f;
-
-    public List<int> coms;
-
-
-
-
-    public int num333 { get; set; };
-
-
-
-
+    public List<int> comSeu;
     private bool isJumping;
+
 	// Use this for initialization
 	void Start () {
-        Debug.Log("ssss");
+        Debug.Log("Start!");
+
+        Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(),GameObject.Find("Enemy").GetComponent<Collider2D>());
 	
 	}
 	
@@ -34,10 +27,7 @@ public class PlayerControl : MonoBehaviour {
     void FixedUpdate ()
     {
         h = Input.GetAxis("Horizontal");
-
         Rigidbody2D body = this.GetComponent<Rigidbody2D>();
-
-
         body.AddForce(h*maxForce*Vector2.right);
 
         isJumping = !Physics2D.Linecast(this.transform.position, this.transform.Find("underCheck").position, 1 << LayerMask.NameToLayer("wall"));
@@ -56,6 +46,7 @@ public class PlayerControl : MonoBehaviour {
         {
             this.transform.localScale = new Vector3(this.transform.localScale.x * -1, this.transform.localScale.y, this.transform.localScale.z);
         }
+
     }
 
     void OnMouseDown()
@@ -64,3 +55,5 @@ public class PlayerControl : MonoBehaviour {
     }
 
 }
+
+
