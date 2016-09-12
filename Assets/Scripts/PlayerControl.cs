@@ -12,8 +12,6 @@ public class PlayerControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Debug.Log("Start!");
-
-        Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(),GameObject.Find("Enemy").GetComponent<Collider2D>());
 	
 	}
 	
